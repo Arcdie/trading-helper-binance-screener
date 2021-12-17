@@ -35,8 +35,8 @@ const create1mCandles = async (newCandles = []) => {
       });
     });
 
-    const result = [];
-    // const result = await Candle1m.insertMany(arrToInsert);
+    // const result = [];
+    const result = await Candle1m.insertMany(arrToInsert);
 
     return {
       result,
