@@ -173,4 +173,4 @@ const intervalCheckDeadConnections = async (interval) => {
   }, interval);
 };
 
-intervalCheckDeadConnections(10 * 60 * 1000);
+intervalCheckDeadConnections(60 * 60 * 1000); // 60 minutes
