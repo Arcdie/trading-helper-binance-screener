@@ -1,4 +1,5 @@
 const ws = require('ws');
+const http = require('http');
 
 const WebSocketRoom = require('./websocket-room');
 
@@ -16,9 +17,15 @@ const {
   app: { websocketPort },
 } = require('../config');
 
-const wss = new ws.Server({
-  port: websocketPort,
-});
+const wsSettings = {};
+
+if (process.env.NODE_ENV === 'localhost') {
+  wsSettings.port = websocketPort;
+} else {
+  wsSettings.server = http.createServer().listen(websocketPort);
+}
+
+const wss = new ws.Server(wsSettings);
 
 const rooms = [...ACTION_NAMES.values()]
   .map(value => new WebSocketRoom(value));
