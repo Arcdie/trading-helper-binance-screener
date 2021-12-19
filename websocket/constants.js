@@ -4,6 +4,8 @@ const ACTION_NAMES = new Map([
 
   ['futuresCandle1mData', 'futuresCandle1mData'],
   ['futuresCandle5mData', 'futuresCandle5mData'],
+
+  ['futuresBookTicker', 'futuresBookTicker'],
 ]);
 
 module.exports = {

@@ -4,6 +4,7 @@ const getLimitOrdersForSpotInstruments = require('./spot/get-limit-orders-for-sp
 
 const get1mCandlesForFuturesInstruments = require('./futures/get-1m-candles-for-futures-instruments');
 const get5mCandlesForFuturesInstruments = require('./futures/get-5m-candles-for-futures-instruments');
+const getBookTickersForFuturesInstruments = require('./futures/get-book-tickers-for-futures-instruments');
 const getLimitOrdersForFuturesInstruments = require('./futures/get-limit-orders-for-futures-instruments');
 
 module.exports = async (instrumentsDocs = []) => {
@@ -25,5 +26,6 @@ module.exports = async (instrumentsDocs = []) => {
 
   await get1mCandlesForFuturesInstruments(futuresDocs);
   await get5mCandlesForFuturesInstruments(futuresDocs);
+  await getBookTickersForFuturesInstruments(futuresDocs);
   // await getLimitOrdersForFuturesInstruments(futuresDocsWithoutIgnoredVolume);
 };
