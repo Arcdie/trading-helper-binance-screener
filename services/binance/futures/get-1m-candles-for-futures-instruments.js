@@ -140,11 +140,11 @@ module.exports = async (instrumentsDocs = []) => {
           instrumentId: instrumentDoc._id,
           instrumentName: instrumentDoc.name,
           startTime: new Date(startTime),
-          open,
-          close,
-          high,
-          low,
-          volume,
+          open: parseFloat(open),
+          close: parseFloat(close),
+          high: parseFloat(high),
+          low: parseFloat(low),
+          volume: parseFloat(volume),
         };
 
         if (!isClosed) {
