@@ -172,6 +172,8 @@ const intervalCheckDeadConnections = async (interval) => {
       targetRoom.leave(client.socketId);
     });
 
+    console.log('Disconnect client', client.socketId);
+
     client.terminate();
   }
 

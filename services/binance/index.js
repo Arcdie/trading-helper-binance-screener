@@ -26,6 +26,6 @@ module.exports = async (instrumentsDocs = []) => {
 
   await get1mCandlesForFuturesInstruments(futuresDocs);
   await get5mCandlesForFuturesInstruments(futuresDocs);
-  await getBookTickersForFuturesInstruments(futuresDocs);
+  // await getBookTickersForFuturesInstruments(futuresDocs);
   // await getLimitOrdersForFuturesInstruments(futuresDocsWithoutIgnoredVolume);
 };

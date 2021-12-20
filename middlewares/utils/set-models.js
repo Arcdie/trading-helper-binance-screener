@@ -50,11 +50,6 @@ module.exports = (async () => {
         Model.setModuleExport(mongooseSchema);
         // delete require.cache[require.resolve(`${pathToModelsFolder}/${fileName}`)];
       });
-
-    process.on('uncaughtException', (err) => {
-      log.error(err);
-      process.exit(1);
-    });
   } catch (error) {
     log.error(error.message);
     process.exit(1);
