@@ -49,15 +49,6 @@ class InstrumentQueue {
         return this.nextStep();
       }
 
-      targetSteps.forEach(step => {
-        step.isClosed = true;
-
-        sendData({
-          actionName: ACTION_NAMES.get('spotCandle1mData'),
-          data: step,
-        });
-      });
-
       setTimeout(() => {
         return this.nextStep();
       }, 2000);
@@ -144,16 +135,17 @@ module.exports = async (instrumentsDocs = []) => {
           high: parseFloat(high),
           low: parseFloat(low),
           volume: parseFloat(volume),
+          isClosed,
         };
 
-        if (!isClosed) {
-          sendData({
-            actionName: ACTION_NAMES.get('spotCandle1mData'),
-            data: sendObj,
-          });
-        } else {
+        if (isClosed) {
           instrumentQueue.addIteration(sendObj);
         }
+
+        sendData({
+          actionName: ACTION_NAMES.get('spotCandle1mData'),
+          data: sendObj,
+        });
       });
     };
 
