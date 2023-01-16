@@ -22,14 +22,15 @@ module.exports = async (instrumentsDocs = []) => {
   const futuresDocsWithoutIgnoredVolume = futuresDocs
     .filter(doc => !doc.does_ignore_volume);
 
-  // await get1mCandlesForSpotInstruments(spotDocs);
+  await get1mCandlesForSpotInstruments(spotDocs);
   await get5mCandlesForSpotInstruments(spotDocs);
   await get1hCandlesForSpotInstruments(spotDocs);
-  // await getLimitOrdersForSpotInstruments(spotDocsWithoutIgnoredVolume);
+  await getLimitOrdersForSpotInstruments(spotDocsWithoutIgnoredVolume);
 
-  // await get1mCandlesForFuturesInstruments(futuresDocs);
+  await get1mCandlesForFuturesInstruments(futuresDocs);
   await get5mCandlesForFuturesInstruments(futuresDocs);
   await get1hCandlesForFuturesInstruments(futuresDocs);
+  await getLimitOrdersForFuturesInstruments(futuresDocsWithoutIgnoredVolume);
+
   // await getBookTickersForFuturesInstruments(futuresDocs);
-  // await getLimitOrdersForFuturesInstruments(futuresDocsWithoutIgnoredVolume);
 };

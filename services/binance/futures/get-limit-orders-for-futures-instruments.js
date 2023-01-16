@@ -10,6 +10,10 @@ const {
   sendMessage,
 } = require('../../../controllers/telegram/utils/send-message');
 
+const {
+  ACTION_NAMES,
+} = require('../../../websocket/constants');
+
 const CONNECTION_NAME = 'Futures:Depth';
 
 module.exports = async (instrumentsDocs = []) => {
@@ -70,7 +74,20 @@ module.exports = async (instrumentsDocs = []) => {
           },
         } = parsedData;
 
-        // todo: send data to connected sockets
+        const validInstrumentName = `${instrumentName}PERP`;
+        const instrumentDoc = instrumentsDocs.find(doc => doc.name === validInstrumentName);
+
+        const sendObj = {
+          instrumentId: instrumentDoc._id,
+          instrumentName: instrumentDoc.name,
+          asks,
+          bids,
+        };
+
+        sendData({
+          actionName: ACTION_NAMES.get('futuresLimitOrders'),
+          data: sendObj,
+        });
       });
     };
 

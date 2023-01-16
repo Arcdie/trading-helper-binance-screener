@@ -74,7 +74,19 @@ module.exports = async (instrumentsDocs = []) => {
           },
         } = parsedData;
 
-        // todo: send data to connected sockets
+        const instrumentDoc = instrumentsDocs.find(doc => doc.name === instrumentName);
+
+        const sendObj = {
+          instrumentId: instrumentDoc._id,
+          instrumentName: instrumentDoc.name,
+          asks,
+          bids,
+        };
+
+        sendData({
+          actionName: ACTION_NAMES.get('spotLimitOrders'),
+          data: sendObj,
+        });
       });
     };
 
